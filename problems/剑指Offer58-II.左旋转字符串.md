@@ -99,22 +99,25 @@ public:
 Java：
 ```java
 class Solution {
-    public String reverseLeftWords(String s, int n) {
-        int len=s.length();
-        StringBuilder sb=new StringBuilder(s);
-        reverseString(sb,0,n-1);
-        reverseString(sb,n,len-1);
-        return sb.reverse().toString();
-    }
-     public void reverseString(StringBuilder sb, int start, int end) {
-        while (start < end) {
-            char temp = sb.charAt(start);
-            sb.setCharAt(start, sb.charAt(end));
-            sb.setCharAt(end, temp);
-            start++;
-            end--;
-            }
-        }
+	public String reverseLeftWords(String s, int n) {
+		char[] ch = s.toCharArray();
+		int len = s.length();
+		
+		reverse(ch, 0, n - 1);
+		reverse(ch, n, len - 1);
+		reverse(ch, 0, len - 1);
+		return new String(ch);
+	}
+
+	public void reverse(char[] ch, int left, int right) {
+		while (left < right) {
+			char temp = ch[left];
+			ch[left] = ch[right];
+			ch[right] = temp;
+			left++;
+			right--;
+		}
+	}
 }
 ```
 
